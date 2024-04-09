@@ -55,6 +55,9 @@ public class TrabEstrutEClassDeDados {
         }
     }
     public static void OrdenacaoPorInsercao(int vetor[]){
+        
+        long tempoInicio = System.currentTimeMillis();
+        
         int [] vetorOrdenado = vetor.clone();
         
         int chave;//armazenar o calor a ser comparado
@@ -80,7 +83,11 @@ public class TrabEstrutEClassDeDados {
             if(i < vetorOrdenado.length-1)
                 msg += ", ";
         }
-        JOptionPane.showMessageDialog(null, msg, "Ordenação por Inserção", 1);
+        long tempoFim = System.currentTimeMillis();
+        long tempoExecucao = tempoFim - tempoInicio;
+        
+        
+        JOptionPane.showMessageDialog(null, msg += "\nTempo de Execução: "+ tempoExecucao+ "ms", "Ordenação por Inserção", 1);
     }
    
     public static void OrdenacaoPorSelecao(int vetor[]){
