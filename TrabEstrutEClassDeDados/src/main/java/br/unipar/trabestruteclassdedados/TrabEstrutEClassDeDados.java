@@ -1,134 +1,153 @@
 package br.unipar.trabestruteclassdedados;
 
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class TrabEstrutEClassDeDados {
 
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        
-        
-        
+        //definindo o tamanho que será atribuido ao vetor
         String tamVetor = JOptionPane.showInputDialog("Diga o tamanho do"
                 + " vetor que deseja ordenar:");
         int numTamVetor = Integer.parseInt(tamVetor);
         
-        int [] vetor = new int [Num];
-        
-        
-        
-        
-        String opcaoVetor = JOptionPane.showInputDialog("Selecione o método de "
-                + "ordenação que deseja utilizar:"
-                + "\n1 - Ordenação por Inserção"
-                + "\n2 - Ordenação por Seleção"
-                + "3 - Ordenação Bolha");
-        int opcao = Integer.parseInt(opcaoVetor);
-        
-        
-        switch (opcao) {
-            case 1:
-                OrdenacaoPorInsercao();
-                break;
-            case 2:
-                
-                break;
-            case 3:
-                
-                break;
-            default:
-                throw new AssertionError();
-        }
-    }
-    public static void OrdenacaoPorInsercao(){
-        int []vetor = {30,20,10,40,30,10};
-        int chave;//armazenar o calor a ser comparado
-        int j;//indice do segundo laço
-        
-        
-        
-        
-        for (int i = 1; i < vetor.length; i++) {
-            
-            chave = vetor[i];
-            for (j = i-1; (j >= 0 && vetor[j] > chave); j--) {
-                vetor[j+1] = vetor[j];
-            }
-            vetor[j+1] = chave;
-            
-            
+        //iniciando o vetor e atribuindo o valor de cada posição
+        int [] vetor = new int [numTamVetor];
+        for (int i = 0; i < vetor.length; i++) {
+            String aux = JOptionPane.showInputDialog((i+1)+"° posição");
+            vetor[i] = Integer.parseInt(aux);
         }
         
-        String msg = "";
+        //imprime o vetor em tela
+        String msg = "Vetor >> ";
         for (int i = 0; i < vetor.length; i++) {
             msg += vetor[i];
             if(i < vetor.length-1)
-                msg += " - ";
+                msg += ", ";
         }
-        JOptionPane.showMessageDialog(null, msg);
+        JOptionPane.showConfirmDialog(null, msg, null, 2);
+        
+        boolean opcaoValida = false;
+        while(!opcaoValida){
+            String opcaoVetor = JOptionPane.showInputDialog("Selecione o método de "
+                    + "ordenação que deseja utilizar:"
+                    + "\n1 - Ordenação por Inserção"
+                    + "\n2 - Ordenação por Seleção"
+                    + "\n3 - Ordenação Bolha");
+            int opcao = Integer.parseInt(opcaoVetor);
+
+            switch (opcao) {
+                case 1:
+                    opcaoValida = true;
+                    OrdenacaoPorInsercao(vetor);
+                    break;
+                case 2:
+                    opcaoValida = true;
+                    OrdenacaoPorSelecao(vetor);
+                    break;
+                case 3:
+                    opcaoValida = true;
+                    OrdenacaoBolha(vetor);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opção Inválida. Tente novamente.", "Opção Inválida", 0);
+                    break;
+            }
+        }
+    }
+    public static void OrdenacaoPorInsercao(int vetor[]){
+        int [] vetorOrdenado = vetor.clone();
+        
+        int chave;//armazenar o calor a ser comparado
+        int j;//indice do segundo laço
+        
+        for (int i = 1; i < vetorOrdenado.length; i++) {
+            chave = vetorOrdenado[i];
+            for (j = i-1; (j >= 0 && vetorOrdenado[j] > chave); j--) {
+                vetorOrdenado[j+1] = vetorOrdenado[j];
+            }
+            vetorOrdenado[j+1] = chave;
+        }
+        
+        String msg = "Vetor Original:      ";
+        for (int i = 0; i < vetor.length; i++) {
+            msg += vetor[i];
+            if(i < vetor.length-1)
+                msg += ", ";
+        }
+        msg += "\nVetor Ordenado:  ";
+        for (int i = 0; i < vetorOrdenado.length; i++) {
+            msg += vetorOrdenado[i];
+            if(i < vetorOrdenado.length-1)
+                msg += ", ";
+        }
+        JOptionPane.showMessageDialog(null, msg, "Ordenação por Inserção", 1);
     }
    
-    public static void OrdenacaoPorSelecao(){
-        int []vetor = {45,20,33,40,50,2,15,88,8};
-        
-        //temos 2 laços de repetição
-        
-        
-        
-        for (int i = 0; i < vetor.length; i++) {
+    public static void OrdenacaoPorSelecao(int vetor[]){
+        int [] vetorOrdenado = vetor.clone();
+
+        for (int i = 0; i < vetorOrdenado.length; i++) {
             
             int posicaoMenor = i;
-            
-            for (int j = i+1; j < vetor.length; j++) {
+            for (int j = i+1; j < vetorOrdenado.length; j++) {
                 
-                if(vetor[j] < vetor[posicaoMenor]){
+                if(vetorOrdenado[j] < vetorOrdenado[posicaoMenor]){
                     posicaoMenor = j;
                 }               
             }
             
             if(posicaoMenor != i){
-                int aux = vetor[i];
-                vetor[i] = vetor[posicaoMenor];
-                vetor[posicaoMenor] = aux;
+                int aux = vetorOrdenado[i];
+                vetorOrdenado[i] = vetorOrdenado[posicaoMenor];
+                vetorOrdenado[posicaoMenor] = aux;
             }
         }
-    
-        String msg = "Vetor ordenado ";
+        String msg = "Vetor Original:      ";
         for (int i = 0; i < vetor.length; i++) {
             msg += vetor[i];
-            if(i < vetor.length-1){
+            if(i < vetor.length-1)
                 msg += ", ";
-            }
         }
-        JOptionPane.showMessageDialog(null, msg);
+        msg += "\nVetor Ordenado:  ";
+        for (int i = 0; i < vetorOrdenado.length; i++) {
+            msg += vetorOrdenado[i];
+            if(i < vetorOrdenado.length-1)
+                msg += ", ";
+        }
+        JOptionPane.showMessageDialog(null, msg, "Ordenação por Seleção", 2);
     }
     
-    public static void OrdenacaoBolha(){
-        int[] vetor = {45,20,33,40,50,2,15,88,8};
+    public static void OrdenacaoBolha(int vetor[]){
+        int [] vetorOrdenado = vetor.clone();
         
         boolean houveTroca= true;
         
         while(houveTroca){
             houveTroca = false;
             
-            for (int i = 0; i < vetor.length -1; i++) {
+            for (int i = 0; i < vetorOrdenado.length -1; i++) {
                 
-                if(vetor[i] > vetor[i+1]){
-                    int aux = vetor[i];
-                    vetor[i] = vetor[i+1];
-                    vetor[i+1] = aux;
+                if(vetorOrdenado[i] > vetorOrdenado[i+1]){
+                    int aux = vetorOrdenado[i];
+                    vetorOrdenado[i] = vetorOrdenado[i+1];
+                    vetorOrdenado[i+1] = aux;
                     houveTroca = true;
                 }
             }
         }
         
-        String msg = "";
+        String msg = "Vetor Original:      ";
         for (int i = 0; i < vetor.length; i++) {
             msg += vetor[i];
             if(i < vetor.length-1)
-                msg += " - ";
+                msg += ", ";
         }
-        JOptionPane.showMessageDialog(null, msg);
+        msg += "\nVetor Ordenado:  ";
+        for (int i = 0; i < vetorOrdenado.length; i++) {
+            msg += vetorOrdenado[i];
+            if(i < vetorOrdenado.length-1)
+                msg += ", ";
+        }
+        JOptionPane.showMessageDialog(null, msg, "Ordenação Bolha", 2);
     } 
 }
