@@ -17,7 +17,7 @@ public class TrabEstrutEClassDeDados {
         int [] vetor = new int [numTamVetor];
         for (int i = 0; i < vetor.length; i++) {
             String aux = JOptionPane.showInputDialog(null,
-                    (i+1)+"° posição",
+                    (i+1)+"° posição (Apenas números inteiros)",
                     "Definindo posições", 
                     -1);
             vetor[i] = Integer.parseInt(aux);
@@ -37,12 +37,14 @@ public class TrabEstrutEClassDeDados {
                 -1);
         
         
-        //while para validar se o número inserido é uma opção válida
         
-        String[] opcoes = {"Crescente", "Decrescente", "Sair"};
+        
+        //while para fechar a janela
         boolean opcaoInvalida = false;
-
         while (!opcaoInvalida) {
+            
+            //página de opções
+            String[] opcoes = {"Crescente", "Decrescente", "Sair"};
             int escolha = JOptionPane.showOptionDialog(
                 null,
                 "Deseja ordenar de qual forma?",
@@ -71,10 +73,13 @@ public class TrabEstrutEClassDeDados {
         }
     }
     public static void opcaoCrescente(int vetor[]){//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        String[] opcoes = {"Inserção", "Seleção", "Bolha", "Voltar"};
+        
+        //while para voltar na página anterior
         boolean opcaoInvalida = false;
-
         while (!opcaoInvalida) {
+            
+            //página de opções
+            String[] opcoes = {"Inserção", "Seleção", "Bolha", "Voltar"};
             int escolha = JOptionPane.showOptionDialog(
                 null,
                 "Selecione o método de ordenação que deseja utilizar",
@@ -105,10 +110,13 @@ public class TrabEstrutEClassDeDados {
         }
     }
     public static void opcaoDecrescente(int vetor[]){//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        String[] opcoes = {"Inserção", "Seleção", "Bolha", "Voltar"};
+       
+        //while para voltar na página anterior
         boolean opcaoInvalida = false;
-
         while (!opcaoInvalida) {
+            
+            //página de opções
+            String[] opcoes = {"Inserção", "Seleção", "Bolha", "Voltar"};
             int escolha = JOptionPane.showOptionDialog(
                 null,
                 "Selecione o método de ordenação que deseja utilizar",
