@@ -38,104 +38,102 @@ public class TrabEstrutEClassDeDados {
         
         
         //while para validar se o número inserido é uma opção válida
-        boolean opcaoValida = false;
-        while(!opcaoValida){
-            
-            String opcaoVetor = JOptionPane.showInputDialog(null, 
-                    "Deseja ordenar de qual forma?"
-                    + "\n1 - Crescente"
-                    + "\n2 - Decrescente",
-                    "Ordenação de Vetores",
-                    -1);
-            int opcao = Integer.parseInt(opcaoVetor);
-            
-            //"Menu" de opções de Ordenação que podem ser utilizadas
-            switch (opcao) {
-                case 1:
-                    opcaoValida = true;
+        
+        String[] opcoes = {"Crescente", "Decrescente", "Sair"};
+        boolean opcaoInvalida = false;
+
+        while (!opcaoInvalida) {
+            int escolha = JOptionPane.showOptionDialog(
+                null,
+                "Deseja ordenar de qual forma?",
+                "Ordenação de Vetores",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                opcoes,
+                opcoes[0]
+            );
+
+            switch (escolha) {
+                case 0:
                     opcaoCrescente(vetor);
                     break;
-                case 2:
-                    opcaoValida = true;
+                case 1:
                     opcaoDecrescente(vetor);
                     break;
+                case 2:
+                    opcaoInvalida = true;
+                    break;
                 default:
-                    JOptionPane.showMessageDialog(null, 
-                            "Opção Inválida. Tente novamente.", 
-                            "Opção Inválida", 
-                            0);
+                    opcaoInvalida = true;
                     break;
             }
         }
     }
-    public static void opcaoCrescente(int vetor[]){
-        boolean opcaoValida = false;
-        while(!opcaoValida){
-            
-            String opcaoVetor = JOptionPane.showInputDialog(null, 
-                    "Selecione o método de ordenação que deseja utilizar:"
-                    + "\n1 - Ordenação por Inserção"
-                    + "\n2 - Ordenação por Seleção"
-                    + "\n3 - Ordenação Bolha", 
-                    "Ordenação de Vetores", 
-                    -1);
-            int opcao = Integer.parseInt(opcaoVetor);
-            
-            //"Menu" de opções de Ordenação que podem ser utilizadas
-            switch (opcao) {
-                case 1:
-                    opcaoValida = true;
+    public static void opcaoCrescente(int vetor[]){//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        String[] opcoes = {"Inserção", "Seleção", "Bolha", "Voltar"};
+        boolean opcaoInvalida = false;
+
+        while (!opcaoInvalida) {
+            int escolha = JOptionPane.showOptionDialog(
+                null,
+                "Selecione o método de ordenação que deseja utilizar",
+                "Ordenação de Vetores",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                opcoes,
+                opcoes[0]
+            );
+
+            switch (escolha) {
+                case 0:
                     OrdenacaoPorInsercao(vetor);
                     break;
-                case 2:
-                    opcaoValida = true;
+                case 1:
                     OrdenacaoPorSelecao(vetor);
                     break;
-                case 3:
-                    opcaoValida = true;
+                case 2:
                     OrdenacaoBolha(vetor);
                     break;
+                case 3:
+                    return;
                 default:
-                    JOptionPane.showMessageDialog(null, 
-                            "Opção Inválida. Tente novamente.", 
-                            "Opção Inválida", 
-                            0);
+                    opcaoInvalida = true;
                     break;
             }
         }
     }
-    public static void opcaoDecrescente(int vetor[]){
-        boolean opcaoValida = false;
-        while(!opcaoValida){
-            
-            String opcaoVetor = JOptionPane.showInputDialog(null, 
-                    "Selecione o método de ordenação que deseja utilizar:"
-                    + "\n1 - Ordenação por Inserção"
-                    + "\n2 - Ordenação por Seleção"
-                    + "\n3 - Ordenação Bolha", 
-                    "Ordenação de Vetores", 
-                    -1);
-            int opcao = Integer.parseInt(opcaoVetor);
-            
-            //"Menu" de opções de Ordenação que podem ser utilizadas
-            switch (opcao) {
-                case 1:
-                    opcaoValida = true;
+    public static void opcaoDecrescente(int vetor[]){//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        String[] opcoes = {"Inserção", "Seleção", "Bolha", "Voltar"};
+        boolean opcaoInvalida = false;
+
+        while (!opcaoInvalida) {
+            int escolha = JOptionPane.showOptionDialog(
+                null,
+                "Selecione o método de ordenação que deseja utilizar",
+                "Ordenação de Vetores",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                opcoes,
+                opcoes[0]
+            );
+
+            switch (escolha) {
+                case 0:
                     OrdenacaoPorInsercaoDecrescente(vetor);
                     break;
-                case 2:
-                    opcaoValida = true;
+                case 1:
                     OrdenacaoPorSelecaoDrecrescente(vetor);
                     break;
-                case 3:
-                    opcaoValida = true;
+                case 2:
                     OrdenacaoBolhaDrecrescente(vetor);
                     break;
+                case 3:
+                    return;
                 default:
-                    JOptionPane.showMessageDialog(null, 
-                            "Opção Inválida. Tente novamente.", 
-                            "Opção Inválida", 
-                            0);
+                    opcaoInvalida = true;
                     break;
             }
         }
